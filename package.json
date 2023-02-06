@@ -1,0 +1,8 @@
+{
+    "scripts": {
+        "scss:watch": "sass --watch store/static/sass/main.scss store/static/css/styles.css"
+    },
+    "devDependencies": {
+        "sass": "^1.56.1"
+    }
+}

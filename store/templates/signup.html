@@ -1,0 +1,87 @@
+{% extends "basic_structure.html" %}
+
+{% block title %} AI Images Market - Sign up {% endblock %}
+
+{% block content %}
+
+<div class="auth-banner">
+    <h2 class="auth-banner-title">JOIN OUR COMMUNITY</h2>
+</div>
+<div class="auth">
+    <div class="auth-card">
+        <h2>Sign Up</h2>
+        <form class="signup-form" action="" method="post" novalidate>
+            {% csrf_token %}
+            <div class="signup-form-rows">
+                <div>
+                    <label for="name_id">First name: </label>
+                    <input type="text" name="name" id="name_id"
+                    {% if form.name %} value="{{ form.name }}" {% endif %}>
+                    <p class="error-log">{{ form_errors.name }}</p>
+                </div>
+                
+                <div>
+                    <label for="last_name_id">Last name: </label>
+                    <input type="text" name="last_name" id="last_name_id"
+                    {% if form.last_name %} value="{{ form.last_name }}" {% endif %}>
+                    <p class="error-log">{{ form_errors.last_name }}</p>
+                </div>
+            </div>
+        
+            <div class="signup-form-rows">
+                <div>
+                    <label for="email_id">Email: </label>
+                    <input type="email" name="email" id="email_id"
+                    {% if form.email %} value="{{ form.email }}" {% endif %}>
+                    <p class="error-log">{{ form_errors.email }}</p>
+                </div>
+            </div>
+            <div class="signup-form-rows">
+                <div>
+                    <label for="password_id">Password: </label>
+                    <input type="password" name="password" id="password_id">
+                    <p class="error-log">{{ form_errors.password }}</p>
+                </div>
+            
+                <div>
+                    <label for="password2_id">Confirm password: </label>
+                    <input type="password" name="password2" id="password2_id">
+                </div>
+            </div>
+        
+            <a href="{% url 'store:login' %}">Already have an account</a>
+            <input class="signup-form-submit" type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    if (parseInt({{ form_errors|length }}) > 0) {
+        {% for bad_field in form_errors.keys %}
+        inp{{ forloop.counter }} = document.getElementById("{{bad_field}}"+"_id");
+        inp{{ forloop.counter }}.style.border = '2px solid red'
+        {% endfor %}
+        addEventListener('input', changeBorder);
+    }
+    function changeBorder() {
+        if (inp1.value) {
+            inp1.style.border = '2px solid white';
+        }
+        if (inp2.value) {
+            inp2.style.border = '2px solid white';
+        }
+        if (inp3.value) {
+            inp3.style.border = '2px solid white';
+        }
+        if (inp4.value) {
+            inp4.style.border = '2px solid white';
+        }
+        if (inp1.value && inp2.value && inp3.value && inp4.value) {
+            removeEventListener('input', changeBorder);
+        }
+    }
+</script>
+{% endblock %}

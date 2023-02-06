@@ -1,0 +1,56 @@
+{% extends "basic_structure.html" %}
+
+{% block title %} AI Images Market - LogIn {% endblock %}
+
+{% block content %}
+
+<div class="auth-banner">
+    <h2 class="auth-banner-title">Welcome again</h2>
+</div>
+<div class="auth">
+    <div class="auth-card">
+        <h2>Log In</h2>
+        <form class="login-form" action="" method="post" novalidate>
+            {% csrf_token %}
+            <p class="error-log">{{ form_error }}</p>
+            <div>
+                <label for="email_id">Email: </label>
+                <input type="email" name="email" id="email_id">
+            </div>
+        
+            <div>
+                <label for="pw_id">Password: </label>
+                <input type="password" name="password" id="pw_id">
+            </div>
+        
+            <a href="{% url 'store:signup' %}">Haven't registered?</a>
+            <input class="login-form-submit" type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    if ("{{ form_error}}") {
+        inp1 = document.getElementById('email_id');
+        inp2 = document.getElementById('pw_id');
+        console.log('hola')
+        inp1.style.border = '2px solid red';
+        inp2.style.border = '2px solid red';
+        addEventListener('input', changeBorder);
+    }
+    function changeBorder() {
+        if (inp1.value) {
+            inp1.style.border = '2px solid white';
+        }
+        if (inp2.value) {
+            inp2.style.border = '2px solid white';
+        }
+        if (inp1.value && inp2.value) {
+            removeEventListener('input', changeBorder);
+        }
+    }
+</script>
+{% endblock %}

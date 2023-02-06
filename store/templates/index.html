@@ -1,0 +1,67 @@
+{% extends "basic_structure.html" %}
+{% block content %}
+    {% if alert_message %}
+    <div class="alert_msg" id="alert_msg" onclick="closeAlertMessage();">
+        <i class="fa fa-times-circle"></i>
+        <p>{{ alert_message }}</p>
+    </div>
+    {% endif %}
+    <div class="main-view">
+        <div class="left-bar">
+            <div class="left-bar-content">
+                <form action="{% url 'store:products' %}" method="get" class="left-bar-form">
+                    <button type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                    <input type="text" name="q" id="left-bar-search" autocomplete="off">
+                </form>
+                <div class="left-bar-categories">
+                    <p>Categories</p>
+                    <ul>
+                        {% for category in categories %}
+                        <li>
+                            <a href="{% url 'store:products' %}?category={{ category.id }}">{{ category.name }}</a>
+                        </li>
+                        {% endfor %}
+                        <li>
+                            <a href="{% url 'store:products' %}">All</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="basis-10"></div>
+        {% if products %}
+        <div class="store-grid">
+            {% for product in products %}
+            <div class="article">
+                <a href="{% url 'store:details' product.pk %}" class="article-anchor">
+                <div class="article-text">
+                    <p class="article-text-name">{{ product.name }}</p>
+                    <p class="article-text-price">{{ product.price }}&#127819;</p>
+                </div>
+                <img class="article-img" src="{{ product.image.url }}" alt="no load">
+                <div class="article-shadow"></div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>There are no products</p>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    if ("{{ alert_message }}") {
+        setTimeout(closeAlertMessage, 3000)
+        function closeAlertMessage() {
+            document.getElementById('alert_msg').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('alert_msg').style.display = 'none';
+            }, 300)
+        }
+    }
+</script>
+{% endblock %}

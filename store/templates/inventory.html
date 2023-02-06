@@ -1,0 +1,20 @@
+{% extends "basic_structure.html" %}
+{% block title %} AI Images Market - Inventory {% endblock %}
+{% block content %}
+{% if customer %}
+<div class="inventory">
+    {% for product in inventory %}
+    <div class="article">
+        <div class="article-text">
+            <p class="article-text-name">{{ product.name }}</p>
+            <p class="article-text-price">{{ product.price }}&#127819;</p>
+        </div>
+        <img class="article-img" src="{{ product.image.url }}" alt="no load">
+        <div class="article-shadow"></div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p style="margin: 4rem; font-weight: bold; text-align: center;">Log in or sign up to see your inventory</p>
+{% endif %}
+{% endblock %}

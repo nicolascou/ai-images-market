@@ -1,0 +1,45 @@
+{% extends "basic_structure.html" %}
+{% block title %} AI Images Market - Cart {% endblock %}
+{% block content %}
+<div class="cart-wrapper">
+    {% if products|length > 0 %}
+        <div class="cart">
+            {% for product in products %}
+            <div class="cart-elt">
+                <a href="{% url 'store:remove-from-cart' customer.id product.id %}">&#10060;</a>
+                <img src="{{ product.image.url }}" alt="">
+                <p class="cart-elt-prompt">{{ product.prompt }}</p>
+                <p class="prc" style="min-width: 60px;">{{ product.price }}&#127819;</p>
+            </div>
+            {% endfor %}
+            <div class="cart-price">
+                <p>{{ customer.coins }}&#127819;</p>
+                <p>{{ total_price }}&#127819;</p>
+                <p id="lastCoins">{{ last_coins }}&#127819;</p>
+            </div>
+        </div>
+        <div class="cart-btn-wrapper">
+            {% if last_coins > 0 %}
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn">Buy</button>
+            </form>
+            {% else %}
+            <p style="font-weight: bold;">Not enough lemons</p>
+            {% endif %}
+        </div>
+    {% else %}
+        <p style="text-align: center; margin: 2rem; font-weight: bold;">No products added to cart</p>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const lastCoins = document.getElementById('lastCoins');
+    const emoji = String.fromCodePoint(127819);
+    if (Number(lastCoins.textContent.replace(emoji, '')) < 0) {
+        lastCoins.style.color = 'red';
+    }
+</script>
+{% endblock %}

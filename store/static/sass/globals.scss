@@ -1,0 +1,61 @@
+$color-primary: #F1EB9C;
+$color-secondary: rgb(95, 180, 230);
+$color-tertiary: #E6C79C;
+$color-white: #fff;
+$color-dark: #78586F;
+$btn-hover: RGB(186, 236, 255);
+
+$px-xl: 6rem;
+$px-lg: 4rem;
+$px-md: 1rem;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'IBM Plex Mono', Arial, sans-serif;
+    font-weight: 400;
+    color: #000;
+}
+body {
+    min-width: 250px;
+}
+ul {
+    list-style: none;
+    i {
+        font-size: 1.2rem !important;
+        margin-right: 1rem;
+    }
+    li:nth-last-child(1) i{
+        margin-right: 0;
+    }
+}
+a {
+    text-decoration: none;
+    &:hover i {
+        color: orange;
+    }
+}
+.content {
+    padding-top: 80px;
+    background: orange;
+    min-height: 100vh;
+}
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.logout-wrapper {
+    margin: 4rem;
+    text-align: center;
+}
+.logout-btn {
+    padding: .5rem 2rem;
+    border: 2px solid black;
+    background-color: red;
+    font-weight: bold;
+}
+
+.error-log {
+    color: #a00 !important;
+}

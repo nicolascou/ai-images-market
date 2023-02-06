@@ -1,0 +1,33 @@
+{% extends "basic_structure.html" %}
+{% block title %} Details of image {{ product.name }} {% endblock %}
+{% block content %}
+<div class="detail-wrapper">
+    {% if product %}
+    <div class="article">
+        <img class="article-img" src="{{ product.image.url }}" alt="no load">
+        <div class="article-shadow-detail"></div>
+    </div>
+    <div class="article-details">
+        <a href="{% url 'store:home' %}">
+            <i class="fa fa-arrow-left article-arrow"></i>
+        </a>
+        <h2>{{ product.name }}</h2>
+        <div class="article-details-text">
+            <p class="label">Prompt:</p>
+            <p class="detail">{{ product.prompt }}</p>
+            <p class="label">Price:</p>
+            <div class="price-wrapper">
+                <p class="price">{{ product.price }}&#127819;</p>
+            </div>
+        </div>
+        <div class="btn-wrapper">
+            {% if customer %}
+            <a href="{% url 'store:add-to-cart' uid=customer.id product_id=product.pk %}">Add to Cart &#128722;</a>
+            {% else %}
+            <a href="" class="btn" onclick="return false;">Add to Cart &#128722;</a>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
