@@ -24,7 +24,7 @@
             {% if customer %}
             <a href="{% url 'store:add-to-cart' uid=customer.id product_id=product.pk %}">Add to Cart &#128722;</a>
             {% else %}
-            <a href="" class="btn" onclick="return false;">Add to Cart &#128722;</a>
+            <a href="{% url 'store:login' %}" class="btn">Add to Cart &#128722;</a>
             {% endif %}
         </div>
     </div>

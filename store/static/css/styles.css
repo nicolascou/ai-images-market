@@ -91,6 +91,10 @@ a:hover i {
   font-size: 20px;
 }
 
+.no-products {
+  align-self: flex-start;
+}
+
 .main-view {
   display: flex;
   flex-direction: row;
