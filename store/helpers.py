@@ -12,13 +12,13 @@ email_verification_token = EmailVerificationTokenGenerator()
 # Custom validators
 def validate_name(name, spa, field):
     if not name:
-        raise ValidationError('Please, introduce your %s'%spa, params={'bad_field': field},)
+        raise ValidationError('Please, enter your %s'%spa, params={'bad_field': field},)
     elif len(name) < 2:
         raise ValidationError('Your %s must have a minimum of 2 characters'%spa, params={'bad_field': field})
 
 def validate_password(password, spa, field):
     if not password:
-        raise ValidationError('Please, introduce a %s'%spa, params={'bad_field': field},)
+        raise ValidationError('Please, enter a %s'%spa, params={'bad_field': field},)
     elif len(password) < 8:
         raise ValidationError('Your %s must have a minimum of 8 characters'%spa, params={'bad_field': field},)
     elif not password.isalnum():
