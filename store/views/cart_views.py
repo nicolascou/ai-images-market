@@ -12,7 +12,7 @@ class CartView(View):
             request.session['alert_message'] = 'You are not logged in'
             return redirect('store:home')
 
-        cart = Cart.objects.get(customer=customer)
+        cart, created = Cart.objects.get_or_create(customer=customer)
         products = cart.items.all()
         total_price = 0
         for product in products:
