@@ -1,1 +1,1 @@
-This a fictional AI-generated Images Market, deployed at https://aiimagesmarket.com
+This a fictional AI-generated Images Market
